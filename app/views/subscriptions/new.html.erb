@@ -1,0 +1,41 @@
+<div class="wrapper-inside">
+	<%= javascript_include_tag "https://js.stripe.com/v2/" %>
+		<script>
+			Stripe.setPublishableKey('#{Rails.application.secrets.stripe_publishable_key}');
+		</script>
+	<%= form_for @subscription  do |f| %>
+		<% if @subscription.errors.any? %>
+			<div id="error_explanation">
+				<h2>
+					<%= pluralize(@subscription.errors.count, "error") %>
+					prohibited this subscription from being saved:
+				</h2>
+				<ul>
+					<% @subscription.errors.full_messages.each do |message| %>
+					<li>
+						<%= message %>
+					</li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+		<!-- <div class="field">
+			<%= f.hidden_field :course_id, value: @course.id %>
+		</div> -->
+		<div class="field">
+			<%= f.label :full_name %>
+			<%= f.text_field :full_name %>
+		</div>
+		<div class="field">
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+		</div>
+		<div class="field">
+			<%= f.label :telephone %>
+			<%= f.text_field :telephone %>
+		</div>
+		<div class="actions">
+			<%= f.submit "Subscription Payment", class: "btn", style: "color: white;background: rgb(242, 118, 73);" %>
+		</div>
+	<% end %>
+</div>
