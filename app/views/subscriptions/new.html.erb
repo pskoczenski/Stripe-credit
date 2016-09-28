@@ -1,8 +1,9 @@
-<div class="wrapper-inside">
-	<%= javascript_include_tag "https://js.stripe.com/v2/" %>
-		<script>
-			Stripe.setPublishableKey('#{Rails.application.secrets.stripe_publishable_key}');
-		</script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script>
+	Stripe.setPublishableKey("pk_test_6O0iBT71KxVHeUCuWeTpNZlS");
+</script>
+<%= javascript_include_tag "credit_card_form.js" %>
+<div class="">
 	<%= form_for @subscription, as: :subscription, url: subscriptions_path do |f| %>
 		<% if @subscription.errors.any? %>
 			<div id="error_explanation">
@@ -51,3 +52,4 @@
 		</div>
 	<% end %>
 </div>
+	<!-- <%= javascript_include_tag "https://js.stripe.com/v2/" %> -->

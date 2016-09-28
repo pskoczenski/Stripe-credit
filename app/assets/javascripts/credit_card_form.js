@@ -1,6 +1,6 @@
 jQuery(function ($) {
   var show_error, stripeResponseHandler;
-  $("#new_registration").submit(function (event) {
+  $("#new_subscription").submit(function (event) {
     var $form;
     $form = $(this);
     $form.find("input[type=submit]").prop("disabled", true);
@@ -10,13 +10,13 @@ jQuery(function ($) {
 
 	stripeResponseHandler = function (status, response) {
     var $form, token;
-    $form = $("#new_registration");
+    $form = $("#new_subscription");
     if (response.error) {
       show_error(response.error.message);
       $form.find("input[type=submit]").prop("disabled", false);
     } else {
       token = response.id;
-      $form.append($("<input type=\"hidden\" name=\"registration[card_token]\" />").val(token));
+      $form.append($("<input type=\"hidden\" name=\"subscription[card_token]\" />").val(token));
       $("[data-stripe=number]").remove();
       $("[data-stripe=cvv]").remove();
       $("[data-stripe=exp-year]").remove();
