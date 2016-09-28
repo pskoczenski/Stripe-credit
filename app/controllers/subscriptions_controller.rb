@@ -4,11 +4,11 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-		Stripe.api_key = "sk_test_784Tfetqy9nGz4iTgMpyCkb9"
+		Stripe.api_key = ""
 		# Get the credit card details submitted by the form
 		token = params[:subscription][:card_token]
 		# Create a charge: this will charge the user's card
-		
+
 		begin
 		  charge = Stripe::Charge.create(
 		    :amount => 10000, # Amount in cents
